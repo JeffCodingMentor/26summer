@@ -14,6 +14,7 @@
 - `userId`: String (Foreign Key to User)
 - `date`: String - 預約日期 (YYYY-MM-DD)
 - `slot`: Int - 時段 (1 或 2)
+- `companionGroupId`: String (UUID, Optional) - Used to link two companion bookings together for joint cancellation.
 - `createdAt`: DateTime
 
 ## Relationships

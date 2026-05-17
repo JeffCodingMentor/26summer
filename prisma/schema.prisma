@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id          String    @id @default(uuid())
+  name        String
+  birthday    String    // format YYYYMMDD
+  parentPhone String
+  createdAt   DateTime  @default(now())
+  bookings    Booking[]
+
+  @@unique([name, birthday]) // For easy returning user lookup
+}
+
+model Booking {
+  id               String   @id @default(uuid())
+  userId           String
+  user             User     @relation(fields: [userId], references: [id])
+  date             String   // format YYYY-MM-DD
+  slot             Int      // 1 or 2
+  companionGroupId String?  // Links companion bookings for simultaneous cancellation
+  createdAt        DateTime @default(now())
+
+  @@unique([date, slot])
+  @@unique([userId, date])
+}
