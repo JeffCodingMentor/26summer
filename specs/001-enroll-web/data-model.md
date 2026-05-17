@@ -22,4 +22,5 @@
 
 ## Constraints
 - Unique constraint on `Booking` for `(date, slot)` to prevent double booking.
+- Unique constraint on `Booking` for `(userId, date)` to enforce one slot per day per user.
 - `name` + `birthday` is used to identify a returning user during authentication.
